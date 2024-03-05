@@ -47,3 +47,13 @@ if(BUILD_SHADERS)
 
     add_dependencies(${PROJECT_NAME} Shaders)
 endif()
+
+if(RUN_AFTER_BUILD)
+    add_custom_command(
+            TARGET ${PROJECT_NAME}
+            POST_BUILD
+            COMMAND ${PROJECT_NAME}
+            WORKING_DIRECTORY ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}
+            COMMENT "Running ${PROJECT_NAME} from ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}"
+    )
+endif()
