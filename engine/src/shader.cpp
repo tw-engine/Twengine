@@ -1,11 +1,62 @@
 #include "../include/shader.hpp"
 
-#include <cstdint>
 #include <fstream>
+#include <vector>
+
+static uint32_t create_shader(const char* path, GLenum shader_type);
+
+namespace te {
+    Shader::Shader() {
+        uint32_t vertex_shader = create_shader("vert.spv", GL_VERTEX_SHADER);
+        uint32_t fragment_shader = create_shader("frag.spv", GL_FRAGMENT_SHADER);
+
+        _handle = glCreateProgram();
+
+        glAttachShader(_handle, vertex_shader);
+        glAttachShader(_handle, fragment_shader);
+
+        glLinkProgram(_handle);
+
+        int success = 0;
+        glGetProgramiv(_handle, GL_LINK_STATUS, &success);
+        if(success == GL_FALSE) {
+            int32_t max_length = 0;
+            glGetProgramiv(_handle, GL_INFO_LOG_LENGTH, &max_length);
+
+            std::vector<char> error(max_length);
+            glGetProgramInfoLog(_handle, max_length, &max_length, error.data());
+            printf("%s\n", error.data());
+
+            glDeleteShader(vertex_shader);
+            glDeleteShader(fragment_shader);
+
+            exit(EXIT_FAILURE);
+        }
+
+        glUseProgram(_handle);
+
+        _global_uniform_buffer = new UniformBuffer(_handle);
+
+        glDeleteShader(vertex_shader);
+        glDeleteShader(fragment_shader);
+    }
+
+    Shader::~Shader() {
+        glDeleteProgram(_handle);
+
+        free(_global_uniform_buffer);
+    }
+
+    void Shader::UpdateState(UBO ubo) {
+        _global_uniform_object = ubo;
+        
+        _global_uniform_buffer->Update(ubo);
+    }
+}
 
 static void load_spirv_module(const char* path, std::vector<char>* module_out);
 
-uint32_t create_shader(const char* path, GLenum shader_type) {
+static uint32_t create_shader(const char* path, GLenum shader_type) {
     uint32_t shader = glCreateShader(shader_type);
 
     std::vector<char> shader_module;
@@ -39,8 +90,10 @@ static void load_spirv_module(const char* path, std::vector<char>* module_out) {
     /* Open binary file */
     std::ifstream fp(path, std::ios::ate | std::ios::binary);
 
-    if(!fp.is_open())
-	exit(EXIT_FAILURE);
+    if(!fp.is_open()) {
+        fprintf(stderr, "Shader: Failed to find shader at \"%s\"", path);
+        exit(EXIT_FAILURE);
+    }
 
     /* Get file size and resize buffer */
     size_t size = fp.tellg();

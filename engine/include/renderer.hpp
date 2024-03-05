@@ -4,6 +4,7 @@
 #include "buffer.hpp"
 #include "common.hpp"
 #include "math_types.hpp"
+#include "shader.hpp"
 #include "window.hpp"
 
 namespace te{
@@ -17,10 +18,7 @@ namespace te{
         // other
 
     private:
-        uint32_t shader_program; /* TODO: Make shader class so its initialized before uniform buffer  */
-
-        UniformBuffer* _global_uniform_buffer;
-        UBO _global_uniform_object;
+        Shader _shader;
     };
 }
 
