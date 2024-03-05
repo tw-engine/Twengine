@@ -23,6 +23,8 @@ namespace te{
 
         Application(std::string title, int width, int height);
 
+        static void _OGLDebugMessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam);
+
         Window _window;
         Renderer _renderer{&_window};
     };
