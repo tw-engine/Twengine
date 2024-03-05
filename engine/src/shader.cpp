@@ -7,8 +7,8 @@ static uint32_t create_shader(const char* path, GLenum shader_type);
 
 namespace te {
     Shader::Shader() {
-        uint32_t vertex_shader = create_shader("vert.spv", GL_VERTEX_SHADER);
-        uint32_t fragment_shader = create_shader("frag.spv", GL_FRAGMENT_SHADER);
+        uint32_t vertex_shader = create_shader("shaders/shader.vert.spv", GL_VERTEX_SHADER);
+        uint32_t fragment_shader = create_shader("shaders/shader.frag.spv", GL_FRAGMENT_SHADER);
 
         _handle = glCreateProgram();
 
