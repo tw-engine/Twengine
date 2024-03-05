@@ -3,7 +3,10 @@
 int main(){
     auto app = te::Application::Create("Twengine Window", 800, 800);
 
-    app->Run();
+    while(app->IsRunning()){
+        app->Update();
+        app->Render();
+    }
 
     return 0;
 }

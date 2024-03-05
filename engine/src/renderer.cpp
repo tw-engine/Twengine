@@ -35,7 +35,7 @@ namespace te{
 		vec2 origin = {_window_ptr->GetWidth()/2, _window_ptr->GetHeight()/2};
 
         while(!_window_ptr->ShouldClose()){
-	    	glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
+	    	glClearColor(_clearColor.r, _clearColor.g, _clearColor.b, _clearColor.a);
 	    	glClear(GL_COLOR_BUFFER_BIT);
 
 			pixelSize = {2.0f / _window_ptr->GetWidth(), 2.0f / _window_ptr->GetHeight()};

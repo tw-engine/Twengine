@@ -10,16 +10,18 @@ namespace te{
         glDebugMessageControl(GL_DONT_CARE, GL_DEBUG_TYPE_ERROR, GL_DONT_CARE, 0, nullptr, GL_TRUE); // Only enables errors
 
         glDebugMessageCallback(_OGLDebugMessageCallback, 0);
-
-        std::cout << "Application Constructor\n";
     }
 
     Application::~Application(){
         std::cout << "Application Terminated\n";
     }
 
-    void Application::Run(){
+    void Application::Render(){
         _renderer.Draw();
+    }
+
+    void Application::Update(){
+
     }
 
     void Application::_OGLDebugMessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam){
