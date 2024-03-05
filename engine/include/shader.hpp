@@ -12,7 +12,10 @@ namespace te {
         Shader();
         ~Shader();
 
-        void UpdateState(UBO ubo);
+        void UpdateState(vec2 pixelSize, vec2 origin);
+
+        void UpdateWorldSpace(vec2 model);
+
     private:
         uint32_t _handle;
 

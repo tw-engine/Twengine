@@ -51,7 +51,7 @@ namespace te{
         glfwTerminate();
     }
 
-    GLFWwindow* Window::Get(){
+    GLFWwindow* Window::Get() const{
 	return window->handle;
     }
 
@@ -61,6 +61,7 @@ namespace te{
 
         if(window->framebufferSizeCallback != nullptr)
             window->framebufferSizeCallback(width, height);
+		glViewport(0, 0, width, height);
     }
 
     void Window::SetFramebufferSizeCallback(const std::function<void(int width, int height)>& callback){

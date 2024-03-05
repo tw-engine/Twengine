@@ -10,14 +10,15 @@
 namespace te{
     class Renderer : NoCopy{
     public:
-        Renderer();
+        Renderer(const Window* window);
         virtual ~Renderer();
 
-        void Draw(Window& window);
+        void Draw();
 
         // other
 
     private:
+        const Window* _window_ptr = NULL;
         Shader _shader;
     };
 }

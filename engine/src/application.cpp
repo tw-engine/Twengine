@@ -12,6 +12,6 @@ namespace te{
     }
 
     void Application::Run(){
-        _renderer.Draw(_window);
+        _renderer.Draw();
     }
 }
