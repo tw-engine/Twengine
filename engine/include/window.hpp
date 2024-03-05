@@ -12,7 +12,7 @@ namespace te{
 
         void SetFramebufferSizeCallback(const std::function<void(int width, int height)>& callback);
 
-	    GLFWwindow* Get();
+	    GLFWwindow* Get() const;
 
 	    bool ShouldClose() const;
 

@@ -65,7 +65,7 @@ typedef struct Vertex {
 typedef struct UBO{
 	vec2 model;
 	vec2 pixelSize;
-	vec2 orgin;
+	vec2 origin;
 } UBO;
 
 #endif

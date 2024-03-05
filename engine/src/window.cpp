@@ -51,7 +51,7 @@ namespace te{
         glfwTerminate();
     }
 
-    GLFWwindow* Window::Get(){
+    GLFWwindow* Window::Get() const{
 	return window->handle;
     }
 

@@ -47,10 +47,17 @@ namespace te {
         free(_global_uniform_buffer);
     }
 
-    void Shader::UpdateState(UBO ubo) {
-        _global_uniform_object = ubo;
-        
-        _global_uniform_buffer->Update(ubo);
+    void Shader::UpdateState(vec2 pixelSize, vec2 origin) {
+        _global_uniform_object.pixelSize = pixelSize;
+        _global_uniform_object.origin = origin;
+
+        _global_uniform_buffer->Update(_global_uniform_object);
+    }
+
+    void Shader::UpdateWorldSpace(vec2 model) {
+        _global_uniform_object.model = model;
+
+        _global_uniform_buffer->Update(_global_uniform_object);
     }
 }
 

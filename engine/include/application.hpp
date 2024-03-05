@@ -24,7 +24,7 @@ namespace te{
         Application(std::string title, int width, int height);
 
         Window _window;
-        Renderer _renderer;
+        Renderer _renderer{&_window};
     };
 
     inline std::unique_ptr<Application> Application::Create(std::string title, int width, int height){

@@ -5,15 +5,14 @@
 #include "../include/window.hpp"
 
 namespace te{
-    Renderer::Renderer(){
-        
+    Renderer::Renderer(const Window* window){
+        _window_ptr = window;
     }
 
     Renderer::~Renderer(){
-
     }
 
-    void Renderer::Draw(Window& window) {
+    void Renderer::Draw() {
 		Vertex vertices[] = {
 	    	{{50.0f, 50.0f}, {1.0f, 1.0f, 1.0f}},
 	    	{{50.0f, 0.0f}, {1.0f, 1.0f, 1.0f}},
@@ -32,20 +31,22 @@ namespace te{
         
 		/* Configure uniform buffer object */
 		vec2 model = {0.0f, 0.0f};
-		vec2 pixelSize = {2.0f / window.GetWidth(), 2.0f / window.GetHeight() * -1.f};
-		vec2 origin = {window.GetWidth()/2, window.GetHeight()/2};
+		vec2 pixelSize = {2.0f / _window_ptr->GetWidth(), 2.0f / _window_ptr->GetHeight() * -1.f};
+		vec2 origin = {_window_ptr->GetWidth()/2, _window_ptr->GetHeight()/2};
 
-        while(!window.ShouldClose()){
+        while(!_window_ptr->ShouldClose()){
 	    	glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
 	    	glClear(GL_COLOR_BUFFER_BIT);
 
-            _shader.UpdateState((UBO){model, pixelSize, origin});
+            _shader.UpdateState(pixelSize, origin); /* Todo: Should only get updated on window resize */
+
+            _shader.UpdateWorldSpace(model);
 
             vertex_buffer.Bind();
 
             index_buffer.Draw();
 
-	    	glfwSwapBuffers(window.Get());
+	    	glfwSwapBuffers(_window_ptr->Get());
 	    	glfwPollEvents();
         }
     }
