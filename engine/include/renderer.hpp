@@ -15,11 +15,13 @@ namespace te{
 
         void Draw();
 
-        // other
+        void SetClearColor(const vec4& color) { _clearColor = color; }
 
     private:
         const Window* _window_ptr = NULL;
         Shader _shader;
+
+        vec4 _clearColor{0.0f, 0.0f, 0.0f, 0.0f};
     };
 }
 

@@ -14,9 +14,10 @@ namespace te{
 
         ~Application();
 
-        void Run();
         void Update();
         void Render();
+
+        inline bool IsRunning() { return !_window.ShouldClose(); }
 
     private:
         static inline Application* app = nullptr;
