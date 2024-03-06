@@ -29,6 +29,7 @@ namespace te{
 
         glVertexAttribPointer(0, (sizeof((Vertex*)0)->pos) / sizeof(float), GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, pos));
         glVertexAttribPointer(1, (sizeof((Vertex*)0)->col) / sizeof(float), GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, col));
+        glVertexAttribPointer(2, (sizeof((Vertex*)0)->tex) / sizeof(float), GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, tex));
 
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);

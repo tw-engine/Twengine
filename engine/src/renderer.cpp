@@ -3,6 +3,7 @@
 #include "../include/math_types.hpp"
 #include "../include/shader.hpp"
 #include "../include/window.hpp"
+#include "../include/sprite.hpp"
 
 namespace te{
     Renderer::Renderer(const Window* window){
@@ -14,10 +15,10 @@ namespace te{
 
     void Renderer::Draw() {
 		Vertex vertices[] = {
-	    	{{50.0f, 50.0f}, {1.0f, 1.0f, 1.0f}},
-	    	{{50.0f, 0.0f}, {1.0f, 1.0f, 1.0f}},
-	    	{{0.0f, 0.0f}, {1.0f, 1.0f, 1.0f}},
-	    	{{0.0f, 50.0f}, {1.0f, 1.0f, 1.0f}},
+	    	{{50.0f, 50.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f}},
+	    	{{50.0f, 0.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 0.0f}},
+	    	{{0.0f, 0.0f}, {1.0f, 1.0f, 1.0f}, {0.0f, 0.0f}},
+	    	{{0.0f, 50.0f}, {1.0f, 1.0f, 1.0f}, {0.0f, 1.0f}},
 		};
 
 		uint32_t indices[] = {
@@ -29,6 +30,9 @@ namespace te{
 
         IndexBuffer index_buffer(sizeof(indices) / sizeof(indices[0]), indices);
         
+		Sprite aSprite(&vertex_buffer, &index_buffer);
+		aSprite.LoadTexture("textures/newpfp.png", GL_RGBA, GL_RGBA);
+
 		/* Configure uniform buffer object */
 		vec2 model = {0.0f, 0.0f};
 		vec2 pixelSize = {2.0f / _window_ptr->GetWidth(), 2.0f / _window_ptr->GetHeight()};
@@ -44,9 +48,7 @@ namespace te{
 
             _shader.UpdateWorldSpace(model);
 
-            vertex_buffer.Bind();
-
-            index_buffer.Draw();
+			aSprite.Draw();
 
 	    	glfwSwapBuffers(_window_ptr->Get());
 	    	glfwPollEvents();

@@ -1,7 +1,7 @@
 #ifndef TE_BUFFER_HPP
 #define TE_BUFFER_HPP
 
-#include "../include/common.hpp"
+#include "common.hpp"
 #include "math_types.hpp"
 
 #include <cstddef>

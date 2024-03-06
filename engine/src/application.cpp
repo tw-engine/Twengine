@@ -10,6 +10,8 @@ namespace te{
         glDebugMessageControl(GL_DONT_CARE, GL_DEBUG_TYPE_ERROR, GL_DONT_CARE, 0, nullptr, GL_TRUE); // Only enables errors
 
         glDebugMessageCallback(_OGLDebugMessageCallback, 0);
+
+        std::cout << "LATEST BUILD!\n";
     }
 
     Application::~Application(){

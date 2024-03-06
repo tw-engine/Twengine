@@ -7,13 +7,14 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 # All engine source files
 file(GLOB_RECURSE SRC src/*.cpp)
 set(GLAD "../extern/glad/src/glad.c")
+set(STBI "../extern/stb")
 file(GLOB_RECURSE HEADER include/*.h include/*.hpp)
 
 # Grouping files in IDEs that support it
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" PREFIX "src" FILES ${SRC})
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}/include" PREFIX "include" FILES ${HEADER})
 
-include_directories("../extern/glad/include")
+include_directories("../extern/glad/include" ${STBI})
 
 # Creates the library from the sources
 add_library(${PROJECT_NAME} ${SRC} ${GLAD})

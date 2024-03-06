@@ -60,6 +60,7 @@ typedef struct vec4{
 typedef struct Vertex {
     vec2 pos;
     vec3 col;
+    vec2 tex;
 } Vertex;
 
 typedef struct UBO{
