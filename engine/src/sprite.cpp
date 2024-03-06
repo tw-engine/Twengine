@@ -1,5 +1,9 @@
 #include "../include/sprite.hpp"
 
+
+#define STB_IMAGE_IMPLEMENTATION
+#include "../../extern/stb/stb_image.h"
+
 namespace te{
     Sprite::Sprite(VertexBuffer* vBuffer, IndexBuffer* iBuffer){
         vBuf = vBuffer;
@@ -27,6 +31,7 @@ namespace te{
         if(!data){
             std::cerr << "Failed to load texture at: " << file << '\n';
             stbi_image_free(data);
+            exit(EXIT_FAILURE);
         }
         
         glTexImage2D(GL_TEXTURE_2D, 0, loadFmt, width, height, 0, sourceFmt, GL_UNSIGNED_BYTE, data);
