@@ -1,17 +1,14 @@
 #include "../include/application.hpp"
-#include "../include/buffer.hpp"
-#include "../include/math_types.hpp"
-#include "../include/shader.hpp"
 
 namespace te{
-    Application::Application(std::string title, int width, int height) : _window(std::move(title), width, height){
+    Application::Application(std::string title, int width, int height, int FPS) : _window(std::move(title), width, height, FPS){
         glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
         glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DONT_CARE, 0, nullptr, GL_FALSE); // disables all debugs
         glDebugMessageControl(GL_DONT_CARE, GL_DEBUG_TYPE_ERROR, GL_DONT_CARE, 0, nullptr, GL_TRUE); // Only enables errors
 
         glDebugMessageCallback(_OGLDebugMessageCallback, 0);
 
-        std::cout << "LATEST BUILD!\n";
+        std::cout << "\nApplication parameters\nTitle:  " << title << "\nWidth:  " << width << "\nHeight: " << height << "\nFPS:\t" << FPS << '\n' << std::endl;
     }
 
     Application::~Application(){

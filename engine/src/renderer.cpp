@@ -31,7 +31,7 @@ namespace te{
         IndexBuffer index_buffer(sizeof(indices) / sizeof(indices[0]), indices);
         
 		Sprite aSprite(&vertex_buffer, &index_buffer);
-		aSprite.LoadTexture("texture.png", GL_RGBA, GL_RGBA);
+		aSprite.LoadTexture("textures/newpfp.png", GL_RGBA, GL_RGBA);
 
 		/* Configure uniform buffer object */
 		vec2 model = {0.0f, 0.0f};

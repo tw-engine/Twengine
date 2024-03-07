@@ -5,7 +5,7 @@ namespace te{
         fprintf(stderr, "GLFW Error %d: %s\n", error, message);
     }
 
-    Window::Window(const std::string& _title, int _width, int _height) : width(_width), height(_height){
+    Window::Window(const std::string& _title, int _width, int _height, int FPS) : width(_width), height(_height){
         window = this;
         
         glfwSetErrorCallback(glfw_error_callback);
@@ -30,7 +30,7 @@ namespace te{
         }
 
         const GLFWvidmode* vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-        glfwSetWindowMonitor(handle, nullptr, (vidmode->width / 2) - (width / 2), (vidmode->height / 2) - (height / 2), width, height, GLFW_DONT_CARE);
+        glfwSetWindowMonitor(handle, nullptr, (vidmode->width / 2) - (width / 2), (vidmode->height / 2) - (height / 2), width, height, (FPS == -1 ? GL_DONT_CARE : FPS));
 
         glfwMakeContextCurrent(handle);
         glfwSwapInterval(0); // no vsync
@@ -62,6 +62,7 @@ namespace te{
 
         if(window->framebufferSizeCallback != nullptr)
             window->framebufferSizeCallback(width, height);
+
 		glViewport(0, 0, width, height);
     }
 

@@ -24,7 +24,7 @@ namespace te{
         friend class Application;
         friend void OnFramebufferSizeChange(GLFWwindow* glfwWin, int width, int height);
 
-        Window(const std::string& title, int width, int height);
+        Window(const std::string& title, int width, int height, int FPS);
 
         int width, height;
 

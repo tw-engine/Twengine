@@ -10,7 +10,7 @@
 namespace te{
     class Application : NoCopy{
     public:
-        static std::unique_ptr<Application> Create(std::string title, int width, int height);
+        static std::unique_ptr<Application> Create(std::string title, int width, int height, int FPS);
 
         ~Application();
 
@@ -22,7 +22,7 @@ namespace te{
     private:
         static inline Application* app = nullptr;
 
-        Application(std::string title, int width, int height);
+        Application(std::string title, int width, int height, int FPS);
 
         static void _OGLDebugMessageCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const void* userParam);
 
@@ -30,8 +30,8 @@ namespace te{
         Renderer _renderer{&_window};
     };
 
-    inline std::unique_ptr<Application> Application::Create(std::string title, int width, int height){
-        app = new Application(title, width, height);
+    inline std::unique_ptr<Application> Application::Create(std::string title, int width, int height, int FPS){
+        app = new Application(title, width, height, FPS);
         return std::unique_ptr<Application>(app);
     }
 }
