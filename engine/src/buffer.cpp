@@ -33,6 +33,7 @@ namespace te{
 
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
+        glEnableVertexAttribArray(2);
 
         Upload(size, vertices);
     }

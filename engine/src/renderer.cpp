@@ -15,10 +15,10 @@ namespace te{
 
     void Renderer::Draw() {
 		Vertex vertices[] = {
-	    	{{50.0f, 50.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f}},
-	    	{{50.0f, 0.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 0.0f}},
+	    	{{150.0f, 150.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 1.0f}},
+	    	{{150.0f, 0.0f}, {1.0f, 1.0f, 1.0f}, {1.0f, 0.0f}},
 	    	{{0.0f, 0.0f}, {1.0f, 1.0f, 1.0f}, {0.0f, 0.0f}},
-	    	{{0.0f, 50.0f}, {1.0f, 1.0f, 1.0f}, {0.0f, 1.0f}},
+	    	{{0.0f, 150.0f}, {1.0f, 1.0f, 1.0f}, {0.0f, 1.0f}},
 		};
 
 		uint32_t indices[] = {
@@ -31,7 +31,7 @@ namespace te{
         IndexBuffer index_buffer(sizeof(indices) / sizeof(indices[0]), indices);
         
 		Sprite aSprite(&vertex_buffer, &index_buffer);
-		aSprite.LoadTexture("textures/newpfp.png", GL_RGBA, GL_RGBA);
+		aSprite.LoadTexture("texture.png", GL_RGBA, GL_RGBA);
 
 		/* Configure uniform buffer object */
 		vec2 model = {0.0f, 0.0f};
