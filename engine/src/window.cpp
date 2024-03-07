@@ -30,7 +30,7 @@ namespace te{
         }
 
         const GLFWvidmode* vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-        glfwSetWindowMonitor(handle, nullptr, (vidmode->width / 2) - (width / 2), (vidmode->height / 2) - (height / 2), width, height, (FPS == -1 ? GL_DONT_CARE : FPS));
+        glfwSetWindowMonitor(handle, nullptr, (vidmode->width / 2) - (width / 2), (vidmode->height / 2) - (height / 2), width, height, (FPS == -1 ? GLFW_DONT_CARE : FPS));
 
         glfwMakeContextCurrent(handle);
         glfwSwapInterval(0); // no vsync
