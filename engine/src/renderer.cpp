@@ -11,6 +11,7 @@ namespace te{
     }
 
     Renderer::~Renderer(){
+        _window_ptr = nullptr;
     }
 
     void Renderer::Draw() {
@@ -30,8 +31,7 @@ namespace te{
 
         IndexBuffer index_buffer(sizeof(indices) / sizeof(indices[0]), indices);
         
-		Sprite aSprite(&vertex_buffer, &index_buffer);
-		aSprite.LoadTexture("textures/newpfp.png", GL_RGBA, GL_RGBA);
+		Sprite aSprite(&vertex_buffer, &index_buffer, "texture.png");
 
 		/* Configure uniform buffer object */
 		vec2 model = {0.0f, 0.0f};
